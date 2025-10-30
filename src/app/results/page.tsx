@@ -1,4 +1,5 @@
-import { loadData, recordMatches, type DamageRecord } from '../lib/data';
+import { loadData } from '../lib/data';
+import { recordMatches, type DamageRecord } from '../lib/client-data';
 import Link from 'next/link';
 
 function parseQuery(searchParams: URLSearchParams): { t: number | null; c: string | null; g: string | null } {
