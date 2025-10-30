@@ -57,7 +57,6 @@ export function recordMatches(
     // either explicitly or via a wildcard category.
     let matchesMaterial = true;
     let hasWildcard = false;
-    let hasExplicitCategory = false;
 
     if (materialCategory) {
       matchesMaterial = mats.some((m) => {
@@ -67,7 +66,6 @@ export function recordMatches(
           return true;
         }
         const isExplicit = eq(m.category, materialCategory);
-        if (isExplicit) hasExplicitCategory = true;
         return isExplicit;
       });
     }
@@ -122,7 +120,7 @@ export function collectMaterialOptions(data: DamageRecord[]): {
   gradesByCategory: Record<string, string[]>;
 } {
   const categories = new Set<string>();
-  const gradesByCategory: Record<string, Set<string>> = {} as any;
+  const gradesByCategory: Record<string, Set<string>> = {};
   for (const rec of data) {
     for (const m of rec.affected_materials || []) {
       categories.add(m.category);

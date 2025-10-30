@@ -42,7 +42,7 @@ export async function loadData(): Promise<DamageRecord[]> {
     try {
       raw = await fs.readFile(jsonPath, 'utf8');
       break;
-    } catch (e) {
+    } catch {
       // Try next path
       continue;
     }
@@ -55,7 +55,7 @@ export async function loadData(): Promise<DamageRecord[]> {
   if (!Array.isArray(data)) throw new Error('Data is not an array');
 
   // The normalized file can still contain nested arrays; flatten deeply.
-  const flattenDeep = (arr: any[]): any[] =>
+  const flattenDeep = (arr: unknown[]): unknown[] =>
     arr.flatMap((item) => (Array.isArray(item) ? flattenDeep(item) : item));
 
   const flattened = flattenDeep(data)
